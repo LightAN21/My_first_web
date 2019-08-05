@@ -1,0 +1,81 @@
+<!doctype html>
+
+<head>
+  <title>jtsai_st_program</title>
+  <link href="index.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body bgcolor="orange">
+
+  <div class="outerDiv" align="center">
+
+    <button id='read_set_0'>Read set0</button>
+    <button id='read_set_1'>Read set1</button>
+    <button id='read_set_2'>Read set2</button>
+    <button id='read_set_3'>Read set3</button>
+    <button id='check_info' onclick="check_info()">Check</button>
+    <br>
+    <button onclick="download_from_url_set_0()">Download set0</button>
+    <button onclick="download_from_url_set_1()">Download set1</button>
+    <button onclick="download_from_url_set_2()">Download set2</button>
+    <button onclick="download_from_url_set_3()">Download set3</button>
+    <p id="progress" style="color:black"></p>
+    <p id="message"></p>
+
+    <div class="File_list" align="left">
+      <div style="margin: 5px">
+        <h3>Files</h3>
+        <table id="com_list"></table>
+      </div>
+    </div>
+
+    <div class="Stategies_list" align="left">
+      <div style="margin: 5px">
+        <h3>Statistics</h3>
+        <button onclick="low_price_list()">low_price_list</button><br>
+        <button onclick="statistic_13()">statistic_13</button><br>
+      </div>
+      <div class="sep"></div>
+
+      <div style="margin: 5px">
+        <h3>Strategies</h3>
+        <button onclick="strategy_13_all()">strategy_13</button><br>
+        <button onclick="strategy_14_all()">strategy_14</button><br>
+      </div>
+      <div class="sep"></div>
+
+      <div style="margin: 5px">
+        <h3>Find Company with Features:</h3>
+        <button onclick="feature_0()">feature_0 (price limit)</button><br>
+        <button onclick="feature_13()">feature_13</button><br>
+        <button onclick="feature_14()">feature_14 (hedge point break)</button><br>
+        <button onclick="feature_15()">feature_15 (gap up)</button><br>
+        <button onclick="feature_16()">feature_16 (pressure to support)</button><br>
+        <button onclick="feature_17()">feature_17 (up fractal)</button><br>
+      </div>
+      <div class="sep"></div>
+
+      <div style="margin: 5px">
+        <h3>Candle Features:</h3>
+        <p>id<br>time<br>date<br>month<br>year</p>
+        <p>open<br>high<br>low<br>close<br>mid<br>height<br>volume</p>
+
+        <h3>Additional Candle Features:</h3>
+        <p>
+          Local minimum (period)<br>
+          Local maximum (period)<br>
+          Moving average (Bollinger bands)<br>
+        </p>
+      </div>
+      <div class="sep"></div>
+
+    </div>
+
+  </div>
+
+  <script src="jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/0.71/jquery.csv-0.71.min.js"></script>
+
+  <script src="index.js"></script>
+
+</body>
