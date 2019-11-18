@@ -3,7 +3,7 @@ var file_list = [];
 var com = [];
 var com_list = [];
 var com_name_set = {};
-var curr_company = "all company";
+var curr_company = 0;
 var data_is_read = 0;
 
 console.log('testing...');
