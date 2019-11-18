@@ -1,3 +1,4 @@
+const fs = require('fs');
 const express = require('express');
 const get_seperator = require('./server/get_seperator');
 const express_use = require('./server/express_use');
@@ -25,8 +26,12 @@ info.file_name_list = read_data.get_file_name_list(info.data_folder_path);
 console.log("seperator: \'" + sep + "\'");
 // console.log(info.company_name_list);
 // console.log(info.file_name_list);
-console.log("company: " + info.company_name_list.length + " companies.");
-console.log("file:    " + info.file_name_list.length + " files.");
+console.log("company: " + info.company_name_list.length + " companies");
+console.log("file:    " + info.file_name_list.length + " files");
+
+/* move file
+// fs.renameSync(folder + name, new_folder + name);
+*/
 
 express_use(app);
 express_get_post(app, __dirname, info);
