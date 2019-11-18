@@ -20,11 +20,11 @@ var info = {
 info.company_name_list = read_data.get_company_name_list(info.company_list_file_path);
 info.file_name_list = read_data.get_file_name_list(info.data_folder_path);
 
-console.log("seperator: \"" + sep + "\"");
-console.log(info.company_name_list);
-console.log(info.file_name_list);
-console.log("company_list: " + info.company_name_list.length + " companies.");
-console.log("file_list:    " + info.file_name_list.length + " files.");
+console.log("seperator: \'" + sep + "\'");
+// console.log(info.company_name_list);
+// console.log(info.file_name_list);
+console.log("company: " + info.company_name_list.length + " companies.");
+console.log("file:    " + info.file_name_list.length + " files.");
 
 express_use(app);
 express_get_post(app, __dirname, info);

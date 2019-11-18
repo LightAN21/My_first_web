@@ -16,12 +16,25 @@
 
     <div class="File_list" align="left">
       <div style="margin: 5px">
-        <h3>Search</h3>
+        <h3>List</h3>
         <table id="com_list"></table>
       </div>
     </div>
 
     <div class="Stategies_list" align="left">
+
+      <div style="margin: 5px">
+        <h3>Selected: <a id="selected_com">all company</a></h3>
+      </div>
+      <div class="sep"></div>
+
+      <div style="margin: 5px">
+        <h3>Search company</h3>
+        <input id="search_com_name" style="text-align:left; width:100px;" maxlength="10" type="text" value="">
+        <input id="submit_search" type="button" onclick="search_company()" value="Search">
+        <p></p>
+      </div>
+      <div class="sep"></div>
 
       <div style="margin: 5px">
         <h3>Find Company with Features:</h3>

@@ -1,8 +1,9 @@
 var all_com_list = [];
 var file_list = [];
-var com_name_set = {};
-var com_list = [];
 var com = [];
+var com_list = [];
+var com_name_set = {};
+var curr_company = "all company";
 var data_is_read = 0;
 
 console.log('testing...');
@@ -19,7 +20,7 @@ $(document).ready(function () {
             com_list.push(file_list[i].split('.')[0]);
         com = new Array(file_list.length);
         for (var i = 0; i < com_list.length; i++)
-            com_name_set[com_list[i]] = 1;
+            com_name_set[com_list[i]] = i;
         console.log("file_list:");
         console.log(file_list);
         console.log("com_list:");
@@ -44,6 +45,7 @@ function read_data() {
     console.log("Reading data...");
     info = [];
     com_lst_table.innerHTML = "";
+    add_button_all_com(com_lst_table);
 
     var count = 0;
     for (var i = 0; i < file_list.length; i++) {
@@ -68,16 +70,64 @@ function progress_bar(curr, total) {
         p.innerHTML = "Progress: 100% (Finished)";
 }
 
-function add_com_to_list(table, com, count) {
+function progress_bar_show_msg(str) {
+    document.getElementById('progress').innerHTML = str;
+    console.log(str);
+}
+
+function add_button_all_com(table) {
     var row = table.insertRow(-1);
     var cell = row.insertCell(0);
-    cell.innerHTML = '[' + count + '] ' + com.name;
+    cell.innerHTML = '[Select all]';
+    cell.onclick = function () {
+        curr_company = "all";
+        progress_bar_show_msg('Select: all company');
+        document.getElementById('selected_com').innerHTML = 'all company';
+    }
+}
+
+function add_com_to_list(table, company, count) {
+    var row = table.insertRow(-1);
+    var cell = row.insertCell(0);
+    cell.innerHTML = '[' + count + '] ' + company.name;
 
     cell.onclick = function () {
-        console.log('\n===========================================');
-
-        console.log(com.name);
-        console.log(com);
-        console.log('');
+        curr_company = company;
+        document.getElementById('selected_com').innerHTML = curr_company.name;
+        console.log('===========================================');
+        progress_bar_show_msg('Select: company ' + curr_company.name);
+        print_company_msg(company);
     }
+}
+
+function search_company() {
+    var name = document.getElementById('search_com_name').value;
+    var msg = 'Search:';
+
+    console.log('===========================================');
+    console.log(msg);
+    if (data_is_read == 0) {
+        msg = 'Search company: Data is not read';
+        progress_bar_show_msg(msg);
+        return;
+    }
+    for (var i = 0; i < com.length; i++) {
+        if (com[i].name.toUpperCase() == name.toUpperCase())
+            break;
+    }
+    if (i == com.length) {
+        msg = '\"' + name + '\" not found';
+        progress_bar_show_msg(msg);
+    }
+    else {
+        curr_company = com[i];
+        document.getElementById('selected_com').innerHTML = curr_company.name;
+        progress_bar_show_msg(com[i].name + ' is found and selected.');
+        print_company_msg(curr_company);
+    }
+}
+
+function print_company_msg(company)
+{
+    console.log(company);
 }
