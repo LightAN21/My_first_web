@@ -81,6 +81,7 @@ function add_button_all_com(table) {
     cell.innerHTML = '[Select all]';
     cell.onclick = function () {
         curr_company = "all";
+        console.log('===========================================');
         progress_bar_show_msg('Select: all company');
         document.getElementById('selected_com').innerHTML = 'all company';
     }
@@ -116,7 +117,7 @@ function search_company() {
             break;
     }
     if (i == com.length) {
-        msg = '\"' + name + '\" not found';
+        msg = name + ' not found';
         progress_bar_show_msg(msg);
     }
     else {

@@ -11,7 +11,6 @@ var sep = get_seperator();
 var data_folder_name = 'data';
 
 var info = {
-    read_data: read_data,
     data_folder_path: __dirname + sep + data_folder_name,
     company_list_file_path: __dirname + sep + 'server' + sep + 'company_list.csv',
     company_name_list: [],
