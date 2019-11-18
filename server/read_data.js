@@ -43,14 +43,31 @@ messageK = {
 */
 
 const fs = require("fs");
+const sync_rl = require('./sync_readline');
 
-function get_file_name_list(folder_name = "informations") {
-    var path = __dirname + '/' + folder_name + '/';
-    var pa = fs.readdirSync(path);
+function get_company_name_list(file_path)
+{
+    var rl = sync_rl(file_path);
+    var com_set = {};
+    var com_list = [];
+
+    while ((line = rl.getline()) != 0)
+    {
+        if (!(line in com_set))
+        {
+            com_set[line] = 1;
+            com_list.push(line);
+        }
+    }
+    return com_list;
+}
+
+function get_file_name_list(folder_path, sep = '/') {
+    var pa = fs.readdirSync(folder_path);
     var file_name_list = [];
 
     pa.forEach(function (name) {
-        var stat = fs.statSync(path + name);
+        var stat = fs.statSync(folder_path + sep + name);
         if (!stat.isDirectory()) {
             file_name_list.push(name);
         }
@@ -59,8 +76,7 @@ function get_file_name_list(folder_name = "informations") {
 }
 
 function read_file_to_obj(folder_path, filename) {
-    const sync_rl = require('./sync_readline');
-    var rl = sync_rl(folder_path + filename, 2048);
+    var rl = sync_rl(folder_path + '/' + filename, 2048);
 
     var line = rl.getline();
     var new_info = {
@@ -68,7 +84,7 @@ function read_file_to_obj(folder_path, filename) {
         day: [],
     };
 
-    while ((line = rl.getline()) != "") {
+    while ((line = rl.getline()) != "" && new_info.day.length < 5000) {
         var arr = line.split(',');
         var t = arr[0].split('-');
 
@@ -113,4 +129,5 @@ function read_file_to_obj(folder_path, filename) {
 module.exports = {
     get_file_name_list: get_file_name_list,
     read_file_to_obj: read_file_to_obj,
+    get_company_name_list: get_company_name_list,
 };

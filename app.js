@@ -7,13 +7,27 @@ const read_data = require('./server/read_data');
 var app = express();
 var sep = get_seperator();
 
-var folder_path = __dirname + sep + 'data';
-var file_list = [];
-var company_list = [];
-var company_msg = [];
+var info = {
+    read_data: read_data,
+    data_folder_path: __dirname + sep + 'data',
+    company_list_file_path: __dirname + sep + 'server' + sep + 'company_list.csv',
+    company_name_list: [],
+    file_name_list: [],
+    company_msg: [],
+    sep: sep,
+};
+
+info.company_name_list = read_data.get_company_name_list(info.company_list_file_path);
+info.file_name_list = read_data.get_file_name_list(info.data_folder_path);
+
+console.log("seperator: \"" + sep + "\"");
+console.log(info.company_name_list);
+console.log(info.file_name_list);
+console.log("company_list: " + info.company_name_list.length + " companies.");
+console.log("file_list:    " + info.file_name_list.length + " files.");
 
 express_use(app);
-express_get_post(app, __dirname, sep);
+express_get_post(app, __dirname, info);
 
 app.listen(7000, () => {
     console.log('Server is running(port 7000)...');
