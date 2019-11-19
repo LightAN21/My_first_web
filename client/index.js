@@ -42,6 +42,7 @@ $(document).ready(function () {
 function read_data() {
     var com_lst_table = document.getElementById('com_list');
 
+    console.log('===========================================');
     console.log("Reading data...");
     info = [];
     com_lst_table.innerHTML = "";
@@ -51,10 +52,11 @@ function read_data() {
     for (var i = 0; i < file_list.length; i++) {
         $.post('/get_file_info', { companyID: i, file_name: file_list[i] }, function (data) {
             com[data.id] = data;
-            add_com_to_list(com_lst_table, data, count);
             count++;
             progress_bar(count, file_list.length);
             if (count >= file_list.length) {
+                for (var i = 0; i < file_list.length; i++)
+                    add_com_to_list(com_lst_table, com[i], i);
                 console.log('Finished.');
             }
         });
@@ -117,7 +119,7 @@ function search_company() {
             break;
     }
     if (i == com.length) {
-        msg = name + ' not found';
+        msg = 'Search: ' + name + ' not found';
         progress_bar_show_msg(msg);
     }
     else {
@@ -128,7 +130,6 @@ function search_company() {
     }
 }
 
-function print_company_msg(company)
-{
+function print_company_msg(company) {
     console.log(company);
 }
