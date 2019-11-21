@@ -84,10 +84,12 @@ function read_file_to_obj(folder_path, filename) {
         day: [],
     };
 
-    while ((line = rl.getline()) != "" && new_info.day.length < 5000) {
+    while ((line = rl.getline()) != "") {
         var arr = line.split(',');
         var t = arr[0].split('-');
 
+        if (Number(t[0]) < 2000)
+            continue ;
         var tmp = {
             id: new_info.day.length,
             time: arr[0],
