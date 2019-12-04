@@ -43,7 +43,7 @@ function break_up_hedge_point_list(com, type = 'day', len = 5000) {
                     var curr_high = hedge[hedge.length - 1].high;
 
                     if (curr_close > curr_high && pre_close <= curr_high) {
-                        var tmp = hedge.pop()
+                        var tmp = hedge.pop();
                         broke.push({
                             index: tmp.id,
                             time: tmp.time,

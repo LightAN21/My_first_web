@@ -1,3 +1,7 @@
+body {
+    background-color: #555555;
+}
+
 .outerDiv {
     color: #fff;
     height: 100%;
@@ -14,7 +18,7 @@
 }
 
 .sep {
-    background-color: orange;
+    background-color: #555555;
     height: 10px;
 }
 

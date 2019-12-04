@@ -9,9 +9,11 @@ var app = express();
 var sep = get_seperator();
 
 var data_folder_name = 'data';
+var tmp_data_folder_name = 'data_tmp';
 
 var info = {
     data_folder_path: __dirname + sep + data_folder_name,
+    tmp_data_folder_path: __dirname + sep + tmp_data_folder_name,
     company_list_file_path: __dirname + sep + 'server' + sep + 'company_list.csv',
     company_name_list: [],
     file_name_list: [],
