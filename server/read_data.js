@@ -121,6 +121,9 @@ function read_file_to_obj(folder_path, filename) {
         var tmp = d[left];
         d[left] = d[right];
         d[right] = tmp;
+        tmp = d[left].id;
+        d[left].id = d[right].id;
+        d[right].id = tmp.id;
         left++;
         right--;
     }

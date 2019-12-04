@@ -1,10 +1,10 @@
-function feature_1() {
+function feature_2() {
     var list = [];
 
     console.log('===========================================');
     if (data_is_read) {
         for (var i = 0; i < com.length; i++){
-            var broke = break_up_hedge_point_list(com[i]);
+            var broke = break_down_hedge_point_list(com[i]);
 
             if (broke.length > 0 && broke[broke.length - 1].index < 5){
                 var b = broke.pop();
@@ -21,7 +21,7 @@ function feature_1() {
         progress_bar_show_msg('Find: Data is not read');
 }
 
-function break_up_hedge_point_list(com, type = 'day', len = 5000) {
+function break_down_hedge_point_list(com, type = 'day', len = 5000) {
     var msg = com[type];
     var hedge = [];
     var list = [];
@@ -34,15 +34,15 @@ function break_up_hedge_point_list(com, type = 'day', len = 5000) {
         var last = hedge.length - 1;
 
         if (last >= 0) {
-            var last_high = hedge[last].high;
+            var last_low = hedge[last].low;
 
-            if (curr_close > last_high && pre_close <= last_high) {
+            if (curr_close < last_low && pre_close >= last_low) {
                 var broke = [];
 
                 while (hedge.length) {
-                    var curr_high = hedge[hedge.length - 1].high;
+                    var curr_low = hedge[hedge.length - 1].low;
 
-                    if (curr_close > curr_high && pre_close <= curr_high) {
+                    if (curr_close < curr_low && pre_close >= curr_low) {
                         var tmp = hedge.pop()
                         broke.push({
                             index: tmp.id,
@@ -61,19 +61,19 @@ function break_up_hedge_point_list(com, type = 'day', len = 5000) {
                 }
             }
         }
-        if (is_down_fractal(msg, i)) {
+        if (is_up_fractal(msg, i)) {
             hedge.push(msg[i]);
         }
     }
     return list;
 }
 
-function show_break_up_hedge_point_list() {
+function show_break_down_hedge_point_list() {
     console.log('===========================================');
     if (curr_company == 0)
         return;
     if (curr_company != 'all') {
-        console.log('break_up_list of ' + curr_company.name + ':');
-        console.log(break_up_hedge_point_list(curr_company));
+        console.log('break_down_list of ' + curr_company.name + ':');
+        console.log(break_down_hedge_point_list(curr_company));
     }
 }
