@@ -34,6 +34,12 @@ $(document).ready(function () {
         data_is_read = 1;
         read_data();
     })
+    $('#download_from_url').click(function () {
+        if (data_is_read)
+            download_from_url();
+        else
+            progress_bar_show_msg('Download: Data is not read');
+    })
     $('#check_data').click(function () {
         console.log(com);
     })
