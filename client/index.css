@@ -5,7 +5,7 @@ body {
 .outerDiv {
     color: #fff;
     height: 100%;
-    width: 400px;
+    width: 600px;
     margin: 0px auto;
 }
 
@@ -13,19 +13,30 @@ body {
     background-color: #EEE8AA;
     color: #000;
     height: 100%;
-    width: 25%;
+    width: 20%;
     float: left;
-}
-
-.sep {
-    background-color: #555555;
-    height: 10px;
+    border: 5px solid #555555;
 }
 
 .Stategies_list {
     background-color: #EEE8AA;
     color: #000;
     height: 100%;
-    width: 73%;
+    width: 55%;
+    float: left;
+    border: 5px solid #555555;
+}
+
+.Result_list {
+    background-color: #EEE8AA;
+    color: #000;
+    height: 100%;
+    width: 20%;
     float: right;
+    border: 5px solid #555555;
+}
+
+.sep {
+    background-color: #555555;
+    height: 10px;
 }

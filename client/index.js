@@ -139,3 +139,7 @@ function search_company() {
 function print_company_msg(company) {
     console.log(company);
 }
+
+function update_result_area(str){
+    document.getElementById('result_area').innerHTML = str;
+}

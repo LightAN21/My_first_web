@@ -1,33 +1,40 @@
+
 function feature_1() {
     var list = [];
+    var str = "";
 
     console.log('===========================================');
     if (data_is_read) {
         for (var i = 0; i < com.length; i++) {
             var broke = break_up_hedge_point_list(com[i]);
 
-            if (broke.length > 0 && broke[broke.length - 1].index < 3) {
+            if (broke.length > 0 && broke[broke.length - 1].index == 1) { // previous day
                 var b = broke.pop();
                 list.push({
                     company: com[i].name,
                     time: b.time,
                     hedge_break: b.hedge_break,
                 });
+                str += com[i].name + '\n';
             }
         }
         list.sort((a, b) => {
             return b.hedge_break.length - a.hedge_break.length;
         });
+        console.log('Feature_1 list:');
         console.log(list);
+        update_result_area(str);
+        return list;
     }
     else
-        progress_bar_show_msg('Find: Data is not read');
+        progress_bar_show_msg('Error: Data is not read');
 }
 
 function break_up_hedge_point_list(com, type = 'day', len = 5000) {
     var msg = com[type];
     var hedge = [];
     var list = [];
+    var str = "";
 
     if (len > msg.length - 2)
         len = msg.length - 2;
@@ -62,6 +69,7 @@ function break_up_hedge_point_list(com, type = 'day', len = 5000) {
                         time: msg[i].time,
                         hedge_break: broke,
                     });
+                    str += msg[i].time + '\n';
                 }
             }
         }
@@ -69,6 +77,7 @@ function break_up_hedge_point_list(com, type = 'day', len = 5000) {
             hedge.push(msg[i]);
         }
     }
+    update_result_area(str);
     return list;
 }
 
