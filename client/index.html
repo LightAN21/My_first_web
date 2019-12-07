@@ -40,12 +40,6 @@
         <h3>Find Company with Features:</h3>
         <button onclick="feature_1()">feature_1 (break_up_hedge_point)</button><br>
         <button onclick="feature_2()">feature_2 (break_down_hedge_point)</button><br>
-        <!-- <button onclick="feature_0()">feature_0 (price limit)</button><br>
-        <button onclick="feature_13()">feature_13</button><br>
-        <button onclick="feature_14()">feature_14 (hedge point break)</button><br>
-        <button onclick="feature_15()">feature_15 (gap up)</button><br>
-        <button onclick="feature_16()">feature_16 (pressure to support)</button><br>
-        <button onclick="feature_17()">feature_17 (up fractal)</button><br> -->
       </div>
       <div class="sep"></div>
 
@@ -60,6 +54,14 @@
 
       <div style="margin: 5px">
         <h3>Strategies</h3>
+        <button onclick="strategy_01()">strategy_01</button><br>
+        <a>
+          After break up hedge point, <br>
+          find next up fractal f1, <br>
+          find previous fractal f0, <br>
+          f1 low > [(f0 low) + (hedge high)] / 2<br>
+        </a>
+        
       </div>
       <div class="sep"></div>
 
@@ -94,5 +96,6 @@
   <script src="freatues/break_up.js"></script>
   <script src="freatues/break_up_hedge_point.js"></script>
   <script src="freatues/break_down_hedge_point.js"></script>
-
+  
+  <script src="strategies/strategy_01.js"></script>
 </body>

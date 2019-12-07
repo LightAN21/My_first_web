@@ -3,10 +3,10 @@ function feature_1() {
 
     console.log('===========================================');
     if (data_is_read) {
-        for (var i = 0; i < com.length; i++){
+        for (var i = 0; i < com.length; i++) {
             var broke = break_up_hedge_point_list(com[i]);
 
-            if (broke.length > 0 && broke[broke.length - 1].index < 3){
+            if (broke.length > 0 && broke[broke.length - 1].index < 3) {
                 var b = broke.pop();
                 list.push({
                     company: com[i].name,
@@ -50,6 +50,7 @@ function break_up_hedge_point_list(com, type = 'day', len = 5000) {
                         broke.push({
                             index: tmp.id,
                             time: tmp.time,
+                            tmp: tmp,
                         });
                     }
                     else
@@ -76,7 +77,7 @@ function show_break_up_hedge_point_list() {
     if (curr_company == 0)
         return;
     if (curr_company != 'all') {
-        console.log('break_up_list of ' + curr_company.name + ':');
+        console.log('break_up_hedge_point_list of ' + curr_company.name + ':');
         console.log(break_up_hedge_point_list(curr_company));
     }
 }
