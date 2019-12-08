@@ -140,6 +140,18 @@ function print_company_msg(company) {
     console.log(company);
 }
 
-function update_result_area(str){
+function update_result_area(str) {
     document.getElementById('result_area').innerHTML = str;
+}
+
+function get_chart() {
+    var com_name = curr_company.name;
+    var tab = document.createElement('a');
+
+    if (!com_name)
+        return 0;
+    console.log('curr_company: ' + com_name);
+    tab.target = '_blank';
+    tab.href = '';
+    tab.click();
 }
