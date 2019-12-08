@@ -8,19 +8,21 @@ function feature_1() {
         for (var i = 0; i < com.length; i++) {
             var broke = break_up_hedge_point_list(com[i]);
 
-            if (broke.length > 0 && broke[broke.length - 1].index == 1) { // previous day
+            if (broke.length > 0 && broke[broke.length - 1].index < 3) { // previous day
                 var b = broke.pop();
                 list.push({
                     company: com[i].name,
                     time: b.time,
                     hedge_break: b.hedge_break,
                 });
-                str += com[i].name + '\n';
             }
         }
         list.sort((a, b) => {
             return b.hedge_break.length - a.hedge_break.length;
         });
+        for (var i = 0; i < list.length; i++){
+            str += list[i].company + '\n';
+        }
         console.log('Feature_1 list:');
         console.log(list);
         update_result_area(str);
