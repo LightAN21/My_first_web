@@ -8,7 +8,7 @@ function feature_1() {
         for (var i = 0; i < com.length; i++) {
             var broke = break_up_hedge_point_list(com[i]);
 
-            if (broke.length > 0 && broke[broke.length - 1].index < 5) { // previous day
+            if (broke.length > 0 && broke[broke.length - 1].index == 2) { // previous day
                 var b = broke.pop();
                 list.push({
                     company: com[i].name,
@@ -18,6 +18,7 @@ function feature_1() {
             }
         }
         list.sort((a, b) => {
+
             return b.hedge_break.length - a.hedge_break.length;
         });
         for (var i = 0; i < list.length; i++){
