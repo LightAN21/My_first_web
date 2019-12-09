@@ -8,7 +8,7 @@ function feature_1() {
         for (var i = 0; i < com.length; i++) {
             var broke = break_up_hedge_point_list(com[i]);
 
-            if (broke.length > 0 && broke[broke.length - 1].index < 3) { // previous day
+            if (broke.length > 0 && broke[broke.length - 1].index < 5) { // previous day
                 var b = broke.pop();
                 list.push({
                     company: com[i].name,
@@ -42,19 +42,19 @@ function break_up_hedge_point_list(com, type = 'day', len = 5000) {
         len = msg.length - 2;
     for (var i = len; i >= 0; i--) {
         var curr_close = msg[i].close;
-        var pre_close = msg[i + 1].close;
+        // var pre_close = msg[i + 1].close;
         var last = hedge.length - 1;
 
         if (last >= 0) {
             var last_high = hedge[last].high;
 
-            if (curr_close > last_high && pre_close <= last_high) {
+            if (curr_close > last_high) {
                 var broke = [];
 
                 while (hedge.length) {
                     var curr_high = hedge[hedge.length - 1].high;
 
-                    if (curr_close > curr_high && pre_close <= curr_high) {
+                    if (curr_close > curr_high) {
                         var tmp = hedge.pop();
                         broke.push({
                             index: tmp.id,

@@ -152,6 +152,6 @@ function get_chart() {
         return 0;
     console.log('curr_company: ' + com_name);
     tab.target = '_blank';
-    tab.href = '';
+    tab.href = 'https://finance.yahoo.com/quote/' + com_name + '/chart';
     tab.click();
 }
