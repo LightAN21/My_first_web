@@ -43,6 +43,9 @@
         <h3>Find Company with Features:</h3>
         <button onclick="feature_1()">feature_1 (break_up_hedge_point)</button><br>
         <button onclick="feature_2()">feature_2 (break_down_hedge_point)</button><br>
+        <br>
+        <button onclick="feature_3()">feature_3 (hedge_of_up_fractal)</button><br>
+        <button onclick="feature_4()">feature_4 (hedge_of_down_fractal)</button><br>
       </div>
       <div class="sep"></div>
 
@@ -52,6 +55,9 @@
         <button onclick="show_break_up_list()">show_break_up_list</button><br> -->
         <button onclick="show_break_up_hedge_point_list()">show_break_up_hedge_point_list</button><br>
         <button onclick="show_break_down_hedge_point_list()">show_break_down_hedge_point_list</button><br>
+        <br>
+        <button onclick="show_hedge_of_up_fractal_list()">show_hedge_of_up_fractal_list</button><br>
+        <button onclick="show_hedge_of_down_fractal_list()">show_hedge_of_down_fractal_list</button><br>
       </div>
       <div class="sep"></div>
 
@@ -87,7 +93,7 @@
     <div class="Result_list" align="left">
       <div style="margin: 5px">
         <h3>Result Area</h3>
-        <textarea id="result_area" rows="30" cols="13"></textarea>
+        <textarea id="result_area" rows="35" cols="13"></textarea>
         <button onclick="open_all_charts()">open all charts</button><br>
         <div id="result"></div>
       </div>
@@ -110,6 +116,7 @@
   <script src="freatues/break_up.js"></script>
   <script src="freatues/break_up_hedge_point.js"></script>
   <script src="freatues/break_down_hedge_point.js"></script>
+  <script src="freatues/hedge_of_fractals.js"></script>
   
   <script src="strategies/strategy_01.js"></script>
 </body>

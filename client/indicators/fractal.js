@@ -112,58 +112,72 @@ function get_fractal_list(com, type = 'day') {
         com.fractal = {};
     var msg = com[type];
     var list = [];
-    var i = find_previous_fractal(msg, 0, msg.length - 1);
+    var i = find_next_fractal(msg, msg.length - 1);
 
     while (i >= 0 && i < msg.length) {
         list.push({index: i, time: msg[i].time});
-        i = find_previous_fractal(msg, i, msg.length - 1);
+        i = find_next_fractal(msg, i);
     }
-    com.fractal[type] = list;
+    // com.fractal[type] = list;
+    return list;
 }
 
-
-
-
-
-function get_down_up_fractal_list_com(com, type = 'day') {
+function get_up_fractal_list(com, type = 'day') {
+    if (com.fractal == undefined)
+        com.fractal = {};
     var msg = com[type];
     var list = [];
+    var i = find_next_up_fractal(msg, msg.length - 1);
 
-    if (com.fractal == undefined || com.fractal[type] == undefined) {
-        get_fractal_list_com(com, type);
+    while (i >= 0 && i < msg.length) {
+        list.push({index: i, time: msg[i].time});
+        i = find_next_up_fractal(msg, i);
     }
-    if (com.down_up_fractal == undefined) {
-        com.down_up_fractal = {};
-    }
-    var fractal = com.fractal[type];
-    for (var i = 0; i < fractal.length - 1; i++) {
-        if (is_up_fractal(msg, fractal[i])
-            && is_down_fractal(msg, fractal[i + 1])
-            && msg[fractal[i + 1]].high > msg[fractal[i]].low) {
-            list.push({
-                down: fractal[i + 1],
-                up: fractal[i],
-                down_time: msg[fractal[i + 1]].time,
-                up_time: msg[fractal[i]].time,
-                time: msg[fractal[i + 1]].time + ' to ' + msg[fractal[i]].time,
-                high: msg[fractal[i + 1]].high,
-                low: msg[fractal[i]].low,
-                height: msg[fractal[i + 1]].high - msg[fractal[i]].low,
-            });
-        }
-    }
-    com.down_up_fractal[type] = list;
+    // com.fractal[type] = list;
+    return list;
 }
 
-// export {
-//     is_up_fractal,
-//     is_down_fractal,
-//     is_fractal,
-//     find_next_down_fractal,
-//     find_next_up_fractal,
-//     find_next_fractal,
-//     find_previous_down_fractal,
-//     find_previous_up_fractal,
-//     find_previous_fractal,
-//     get_fractal_list,
-// };
+function get_down_fractal_list(com, type = 'day') {
+    if (com.fractal == undefined)
+        com.fractal = {};
+    var msg = com[type];
+    var list = [];
+    var i = find_next_down_fractal(msg, msg.length - 1);
+
+    while (i >= 0 && i < msg.length) {
+        list.push({index: i, time: msg[i].time});
+        i = find_next_down_fractal(msg, i);
+    }
+    // com.fractal[type] = list;
+    return list;
+}
+
+// function get_down_up_fractal_list_com(com, type = 'day') {
+//     var msg = com[type];
+//     var list = [];
+
+//     if (com.fractal == undefined || com.fractal[type] == undefined) {
+//         get_fractal_list_com(com, type);
+//     }
+//     if (com.down_up_fractal == undefined) {
+//         com.down_up_fractal = {};
+//     }
+//     var fractal = com.fractal[type];
+//     for (var i = 0; i < fractal.length - 1; i++) {
+//         if (is_up_fractal(msg, fractal[i])
+//             && is_down_fractal(msg, fractal[i + 1])
+//             && msg[fractal[i + 1]].high > msg[fractal[i]].low) {
+//             list.push({
+//                 down: fractal[i + 1],
+//                 up: fractal[i],
+//                 down_time: msg[fractal[i + 1]].time,
+//                 up_time: msg[fractal[i]].time,
+//                 time: msg[fractal[i + 1]].time + ' to ' + msg[fractal[i]].time,
+//                 high: msg[fractal[i + 1]].high,
+//                 low: msg[fractal[i]].low,
+//                 height: msg[fractal[i + 1]].high - msg[fractal[i]].low,
+//             });
+//         }
+//     }
+//     com.down_up_fractal[type] = list;
+// }
