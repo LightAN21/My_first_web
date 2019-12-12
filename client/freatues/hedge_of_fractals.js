@@ -85,7 +85,7 @@ function feature_3() {
             var hedge_list = hedge_of_up_fractal_list(com[i]);
 
             if (hedge_list.length > 0
-                && hedge_list[hedge_list.length - 1].next_index <= 2) { // previous day
+                && hedge_list[hedge_list.length - 1].next_index == 1) { // previous day
                 var b = hedge_list.pop();
                 list.push({
                     company: com[i].name,
@@ -95,7 +95,7 @@ function feature_3() {
             }
         }
         list.sort((a, b) => {
-            return (b.company > a.company) ? 1 : -1;
+            return (a.company > b.company) ? 1 : -1;
         });
         for (var i = 0; i < list.length; i++){
             str += list[i].company + '\n';
@@ -119,7 +119,7 @@ function feature_4() {
             var hedge_list = hedge_of_down_fractal_list(com[i]);
 
             if (hedge_list.length > 0
-                && hedge_list[hedge_list.length - 1].next_index <= 2) { // previous day
+                && hedge_list[hedge_list.length - 1].next_index == 1) { // previous day
                 var b = hedge_list.pop();
                 list.push({
                     company: com[i].name,
@@ -129,7 +129,7 @@ function feature_4() {
             }
         }
         list.sort((a, b) => {
-            return (b.company > a.company) ? 1 : -1;
+            return (a.company > b.company) ? 1 : -1;
         });
         for (var i = 0; i < list.length; i++){
             str += list[i].company + '\n';
