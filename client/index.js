@@ -146,12 +146,43 @@ function update_result_area(str) {
 
 function get_chart() {
     var com_name = curr_company.name;
-    var tab = document.createElement('a');
 
     if (!com_name)
         return 0;
     console.log('curr_company: ' + com_name);
-    tab.target = '_blank';
-    tab.href = 'https://finance.yahoo.com/quote/' + com_name + '/chart';
-    tab.click();
+    open_chart(com_name);
+}
+
+function open_chart(com_name) {
+    // var tab = document.createElement('a');
+
+    // tab.target = '_blank';
+    // tab.href = 'https://finance.yahoo.com/quote/' + com_name + '/chart';
+    // tab.click();
+    window.open('https://finance.yahoo.com/quote/' + com_name + '/chart', '');
+}
+
+function open_all_charts() {
+    var res = document.getElementById('result_area').innerHTML;
+    var list = res.split('\n');
+
+    if (list[list.length - 1] == '')
+        list.pop();
+    console.log(list);
+    res = document.getElementById('result');
+    res.innerHTML = '';
+    for (var i = 0; i < list.length; i++){
+        add_open_chart_button(res, list[i]);
+    }
+}
+
+function add_open_chart_button(res, com_name) {
+    var b = document.createElement('button');
+
+    b.onclick = () => {
+        open_chart(com_name);
+    };
+    b.innerHTML = com_name;
+    res.appendChild(b);
+    res.appendChild(document.createElement('br'));
 }
