@@ -5,12 +5,16 @@ function hedge_of_up_fractal_list(com, type = 'day'){
     var list = [];
     var str = "";
 
-    for (var i = 1; i < hedge_list.length - 1; i++)
+    for (var i = 2; i < hedge_list.length - 1; i++)
     {
-        var pre = hedge_list[i - 1].index;
-        var curr = hedge_list[i].index;
         var next = hedge_list[i + 1].index;
-        if (msg[curr].low < msg[pre].low && msg[curr].low < msg[next].low){
+        var curr = hedge_list[i].index;
+        var pre = hedge_list[i - 1].index;
+        var pre2 = hedge_list[i - 2].index;
+        if (msg[curr].low < msg[next].low
+            && msg[curr].low < msg[pre].low
+            && msg[curr].low < msg[pre2].low
+            ){
             list.push({
                 index: curr,
                 time: msg[curr].time,
@@ -18,6 +22,8 @@ function hedge_of_up_fractal_list(com, type = 'day'){
                 next_fractal_time: msg[next].time,
                 pre_index: pre,
                 pre_fractal_time: msg[pre].time,
+                pre2_index: pre2,
+                pre2_fractal_time: msg[pre2].time,
             });
             str += msg[curr].time + '\n';
         }
@@ -43,13 +49,17 @@ function hedge_of_down_fractal_list(com, type = 'day'){
     var list = [];
     var str = "";
 
-    for (var i = 1; i < hedge_list.length - 1; i++)
+    for (var i = 2; i < hedge_list.length - 1; i++)
     {
-        var pre = hedge_list[i - 1].index;
-        var curr = hedge_list[i].index;
         var next = hedge_list[i + 1].index;
+        var curr = hedge_list[i].index;
+        var pre = hedge_list[i - 1].index;
+        var pre2 = hedge_list[i - 2].index;
 
-        if (msg[curr].high > msg[pre].high && msg[curr].high > msg[next].high){
+        if (msg[curr].high > msg[next].high
+            && msg[curr].high > msg[pre].high
+            && msg[curr].high > msg[pre2].high
+            ){
             list.push({
                 index: curr,
                 time: msg[curr].time,
@@ -57,6 +67,8 @@ function hedge_of_down_fractal_list(com, type = 'day'){
                 next_fractal_time: msg[next].time,
                 pre_index: pre,
                 pre_fractal_time: msg[pre].time,
+                pre2_index: pre2,
+                pre2_fractal_time: msg[pre2].time,
             });
             str += msg[curr].time + '\n';
         }
